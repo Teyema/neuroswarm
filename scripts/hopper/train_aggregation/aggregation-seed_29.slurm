@@ -1,0 +1,46 @@
+#!/bin/bash
+
+## Give your job a name to distinguish it from other jobs you run.
+#SBATCH --job-name=tenn2-agg-seed_29
+
+## General partitions: all-HiPri, bigmem-HiPri   --   (12 hour limit)
+##                     all-LoPri, bigmem-LoPri, gpuq  (5 days limit)
+## Restricted: CDS_q, CS_q, STATS_q, HH_q, GA_q, ES_q, COS_q  (10 day limit)
+#SBATCH --partition=normal
+
+## Separate output and error messages into 2 files.`
+## NOTE: %u=userID, %x=jobName, %N=nodeID, %j=jobID, %A=arrayID, %a=arrayTaskID`
+#SBATCH --output=/scratch/%u/%x-%N-%j.out  # Output file`
+#SBATCH --error=/scratch/%u/%x-%N-%j.err   # Error file`
+
+## Slurm can send you updates via email
+#SBATCH --mail-type=BEGIN,END,FAIL         # ALL,NONE,BEGIN,END,FAIL,REQUEUE,..
+#SBATCH --mail-user=lteyema@gmu.edu     # Put your GMU email address here
+
+## Specify how much memory your job needs. (2G is the default)
+#SBATCH --mem=4G        # Total memory needed per task (units: K,M,G,T)
+
+## Specify how much time your job needs. (default: see partition above)
+#SBATCH --time=0-15:00  # Total time needed for job: Days-Hours:Minutes
+
+#SBATCH --cpus-per-task 48
+
+
+## Load the relevant modules needed for the job
+source ~/neuromorphic/turtwig/scripts/hopper/neuromodules.sh
+cd turtwig
+
+export MAKE_PARENTS=true
+
+## Run your program or script
+python experiment_tenn2.py train --root out/agg/4  -p 48 --save_best --epochs 500 --eons_seed 29 -N 4  --pname_suffix rss_snn_eons_agg-es29_n4 
+python experiment_tenn2.py train --root out/agg/3  -p 48 --save_best --epochs 500 --eons_seed 29 -N 3  --pname_suffix rss_snn_eons_agg-es29_n3 
+python experiment_tenn2.py train --root out/agg/5  -p 48 --save_best --epochs 500 --eons_seed 29 -N 5  --pname_suffix rss_snn_eons_agg-es29_n5 
+python experiment_tenn2.py train --root out/agg/6  -p 48 --save_best --epochs 500 --eons_seed 29 -N 6  --pname_suffix rss_snn_eons_agg-es29_n6 
+python experiment_tenn2.py train --root out/agg/7  -p 48 --save_best --epochs 500 --eons_seed 29 -N 7  --pname_suffix rss_snn_eons_agg-es29_n7 
+python experiment_tenn2.py train --root out/agg/7  -p 48 --save_best --epochs 500 --eons_seed 29 -N 7  --pname_suffix rss_snn_eons_agg-es29_n7 
+python experiment_tenn2.py train --root out/agg/8  -p 48 --save_best --epochs 500 --eons_seed 29 -N 8  --pname_suffix rss_snn_eons_agg-es29_n8 
+python experiment_tenn2.py train --root out/agg/8  -p 48 --save_best --epochs 500 --eons_seed 29 -N 8  --pname_suffix rss_snn_eons_agg-es29_n8 
+python experiment_tenn2.py train --root out/agg/9  -p 48 --save_best --epochs 500 --eons_seed 29 -N 9  --pname_suffix rss_snn_eons_agg-es29_n9 
+python experiment_tenn2.py train --root out/agg/9  -p 48 --save_best --epochs 500 --eons_seed 29 -N 9  --pname_suffix rss_snn_eons_agg-es29_n9 
+python experiment_tenn2.py train --root out/agg/10 -p 48 --save_best --epochs 500 --eons_seed 29 -N 10 --pname_suffix rss_snn_eons_agg-es29_n10 
