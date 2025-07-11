@@ -25,13 +25,22 @@
             "justMyCode": false,
         },
 
+        // {
+        //     "name": "Python Debugger: tenn2 train",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     // "cwd": "/home/videblu/neuromorphic/RobotSwarmSimulator/demo/configs/conftest",
+        //     "program": "experiment_tenn2.py",
+        //     "args": ["train", "artifact_test", "--overwrite_project", "-p", "1"],
+        //     "justMyCode": false,
+        // },
         {
             "name": "Python Debugger: tenn2 train",
             "type": "debugpy",
             "request": "launch",
             // "cwd": "/home/videblu/neuromorphic/RobotSwarmSimulator/demo/configs/conftest",
             "program": "experiment_tenn2.py",
-            "args": ["train", "artifact_test", "--overwrite_project", "-p", "1"],
+            "args": ["train", "-N", "4", "-p", "1"],
             "justMyCode": false,
         },
     ]
